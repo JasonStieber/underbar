@@ -97,6 +97,13 @@
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, test) {
+    var finalArr = [];
+    for(var i = 0; i < collection.length; i++){
+      if(!test(collection[i])){
+        finalArr.push(collection[i]);
+      }
+    }
+    return finalArr;
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
   };
@@ -177,6 +184,9 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+    var result;
+
+    return result;
   };
 
   // Determine if the array or object contains a given value (using `===`).
