@@ -116,12 +116,10 @@
         if(finalArr[j] === array[i]){
           newVal = false;
         }
-      }
-      if(newVal){
+      }if(newVal){
         finalArr.push(array[i]);
       }
-    }
-    return finalArr;
+    }return finalArr;
   };
 
 
@@ -339,6 +337,15 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    var ranArr = array.slice(0);
+    for(var i = 0; i < ranArr.length; i++){
+      var ranNum = (Math.random()*(array.length-i));
+      var loc = Math.floor(ranNum);
+      var tempArr = ranArr.slice(loc+i);
+      var secondHalf = ranArr.slice(0,loc+i);
+      ranArr = tempArr.concat(secondHalf);
+    }
+    return ranArr;
   };
 
 
