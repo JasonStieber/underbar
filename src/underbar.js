@@ -46,7 +46,6 @@
     else{
       return array.slice(array.length-n);
     }
-
   };
 
   // Call iterator(value, key, collection) for each element of collection.
@@ -183,10 +182,20 @@
   //     return total + number * number;
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
-  _.reduce = function(collection, iterator, accumulator) {
-    var result;
 
-    return result;
+  _.reduce = function(collection, iterator, accumulator) {
+    if(accumulator === undefined){
+      var accumulator = collection[0];
+      var workCol = collection.slice(1);
+      _.each(workCol, function(item){
+          accumulator = iterator(accumulator, item)
+      });
+    }else{
+      _.each(collection, function(item){
+          accumulator = iterator(accumulator, item)
+      });
+    }
+    return accumulator;
   };
 
   // Determine if the array or object contains a given value (using `===`).
