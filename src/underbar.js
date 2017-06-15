@@ -208,15 +208,13 @@
     }, false);
   };
 
-
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-    if(iterator === undefined){
-    }return _.reduce(collection, function(howTrue, statment){
+    return _.reduce(collection, function(howTrue, item){
       if(iterator === undefined){
-        return(statment && howTrue);
-      }if(iterator(statment) && howTrue){
+        return(item && howTrue);
+      }if(iterator(item) && howTrue){
           return true;
       }else{
         return false;
@@ -224,10 +222,32 @@
     },true);
   };
 
+  /*
+    var howTrue = true;
+    for(var i = 0; i < collection.length; i++){
+        item = collection[i];
+        if(interator(item) && howTure){
+        howTrue = ture;
+      }else{
+        howTrue = false;
+      }
+    }return theAnswer;
+  */
+
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
-
+    if(iterator === undefined){
+      iterator = function(item){
+        return item;
+      }
+    }
+      return _.reduce(collection, function(state, item){
+        if(state || iterator(item)){
+          return true;
+        }
+        return false;
+      },false);
     // TIP: There's a very clever way to re-use every() here.
   };
 
