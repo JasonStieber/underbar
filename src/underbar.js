@@ -213,13 +213,10 @@
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
     if(iterator === undefined){
-    }
-    return _.reduce(collection, function(howTrue, statment){
+    }return _.reduce(collection, function(howTrue, statment){
       if(iterator === undefined){
         return(statment && howTrue);
-
-      }
-      if(iterator(statment) && howTrue){
+      }if(iterator(statment) && howTrue){
           return true;
       }else{
         return false;
@@ -382,6 +379,21 @@
   //
   // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
+    var flatArr = [];
+    for(var i = 0; i < nestedArray.length; i++){
+      if(Array.isArray(nestedArray[i])){
+        var howDeepArr = nestedArray[i];
+        for(var x = 0; x < howDeepArr.length; x++){
+          var deeperArr = howDeepArr[x];
+          while(Array.isArray(deeperArr)){
+            deeperArr = deeperArr[x];
+          }
+          flatArr.push(deeperArr);
+      }
+      }else{
+        flatArr.push(nestedArray[i]);
+        }
+    }return flatArr;
   };
 
   // Takes an arbitrary number of arrays and produces an array that contains
